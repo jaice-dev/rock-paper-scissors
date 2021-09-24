@@ -6,37 +6,56 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     // Plays a single round of Rock Paper Scissors
-    let won = null;
+    let result = ''
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
     if (playerSelection === computerSelection) {
-        return "It's a draw!"
-    } else if (playerSelection === "rock") {
-        if (computerSelection === "scissors") {
-            won = true
-        }
-    } else if (playerSelection === "scissors") {
-        if (computerSelection === "paper") {
-            won = true
-        }
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            won = true
-        }
+        result = 'tie';
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
+        result = 'won';
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+       result = 'won';
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        result = 'won';
     } else {
-        won = false
+        result = 'lost';
     }
 
-    if (won === true) {
-        return `You won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`
+    console.log(playerSelection, computerSelection, result)
+
+    if (result === 'won') {
+        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`)
+    } else if (result === 'lost') {
+        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`)
+    } else if (result === 'tie') {
+        console.log(`You drew!`)
     }
-    else {
-        return `You lost! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`
+    
+    return result
+}
+
+
+
+function game() {
+    // Play a 5 round game that keeps score and reports a winner or loser at the end.
+    let score = 0;
+
+    for (let i = 0; i < 5; i++) {
+        userChoice = prompt("Please pick a move");
+        computerChoice = computerPlay();
+        outcome = playRound(userChoice, computerChoice);
+
+        if (outcome === 'won') {
+            score++;
+        }
+    }
+
+    if (score >= 3) {
+        return `You Won! Your score is ${score}/5`;
+    } else {
+        return `You Lose! Your score is ${score}/5`;
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playerSelection, computerSelection)
-console.log(playRound(playerSelection, computerSelection));
+console.log(game());
