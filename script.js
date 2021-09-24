@@ -25,21 +25,22 @@ function playRound(playerSelection, computerSelection) {
     console.log(playerSelection, computerSelection, result)
 
     if (result === 'won') {
-        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`)
+        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`);
     } else if (result === 'lost') {
-        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`)
+        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`);
     } else if (result === 'tie') {
-        console.log(`You drew!`)
+        console.log(`You drew!`);
     }
     
-    return result
+    return result;
 }
 
 
 
 function game() {
     // Play a 5 round game that keeps score and reports a winner or loser at the end.
-    let score = 0;
+    let playerScore = 0;
+    let computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
         userChoice = prompt("Please pick a move");
@@ -47,14 +48,18 @@ function game() {
         outcome = playRound(userChoice, computerChoice);
 
         if (outcome === 'won') {
-            score++;
+            playerScore++;
+        } else if (outcome === 'lost') {
+            computerScore++;
         }
     }
 
-    if (score >= 3) {
-        return `You Won! Your score is ${score}/5`;
+    if (playerScore === computerScore) {
+        return `Draw! You both scored ${playerScore}`;
+    } else if (playerScore > computerScore) {
+        return `You Won! Your score is ${playerScore}. Computer score is ${computerScore}`;
     } else {
-        return `You Lose! Your score is ${score}/5`;
+        return `You Lost! Your score is ${playerScore}. Computer score is ${computerScore}`;
     }
 }
 
