@@ -25,9 +25,11 @@ function playRound(playerSelection, computerSelection) {
     console.log(playerSelection, computerSelection, result)
 
     if (result === 'won') {
-        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`);
+        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + 
+            playerSelection.slice(1)} beats ${computerSelection}.`);
     } else if (result === 'lost') {
-        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`);
+        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + 
+            computerSelection.slice(1)} beats ${playerSelection}.`);
     } else if (result === 'tie') {
         console.log(`You drew!`);
     }
