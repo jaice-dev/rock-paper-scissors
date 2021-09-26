@@ -22,16 +22,21 @@ function playRound(playerSelection, computerSelection) {
         result = 'lost';
     }
 
+    const results = document.querySelector('#results');
+    const content = document.createElement('div');
+    content.classList.add('content');
+
     if (result === 'won') {
-        console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + 
-            playerSelection.slice(1)} beats ${computerSelection}.`);
+        content.textContent = `You won! ${playerSelection.charAt(0).toUpperCase() + 
+            playerSelection.slice(1)} beats ${computerSelection}.`
     } else if (result === 'lost') {
-        console.log(`You lost! ${computerSelection.charAt(0).toUpperCase() + 
-            computerSelection.slice(1)} beats ${playerSelection}.`);
+        content.textContent = `You lost! ${computerSelection.charAt(0).toUpperCase() + 
+            computerSelection.slice(1)} beats ${playerSelection}.`;
     } else if (result === 'tie') {
-        console.log(`You drew!`);
+        content.textContent =`You drew!`;
     }
     
+    results.appendChild(content);
     return result;
 }
 
