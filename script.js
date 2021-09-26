@@ -22,10 +22,9 @@ function playRound(playerSelection, computerSelection) {
         result = 'lost';
     }
 
-    const results = document.querySelector('#results');
     const content = document.createElement('div');
     content.classList.add('content');
-
+    
     if (result === 'won') {
         content.textContent = `You won! ${playerSelection.charAt(0).toUpperCase() + 
             playerSelection.slice(1)} beats ${computerSelection}.`
@@ -39,8 +38,6 @@ function playRound(playerSelection, computerSelection) {
     results.appendChild(content);
     return result;
 }
-
-
 
 function game() {
     // Play a 5 round game that keeps score and reports a winner or loser at the end.
@@ -59,6 +56,7 @@ function game() {
         }
     }
 
+
     if (playerScore === computerScore) {
         return `Draw! You both scored ${playerScore}`;
     } else if (playerScore > computerScore) {
@@ -68,18 +66,39 @@ function game() {
     }
 }
 
+function updateScore(wld) {
+    if (wld === 'won') {
+        playerScore++;
+    } else if (wld === 'lost') {
+        computerScore++;
+    }
+    if (playerScore > 4) {
+
+    } else if (computerScore > 4) {
+        console.log("WON!")
+    }
+}
+
 const rockbtn = document.querySelector('#rockbtn');
 const paperbtn = document.querySelector('#paperbtn');
 const scissorsbtn = document.querySelector('#scissorsbtn');
 
+const results = document.querySelector('#results');
+
+let playerScore = 0;
+let computerScore = 0;
+
 rockbtn.addEventListener('click', () => {
-    console.log(playRound('rock', computerPlay()))
+    wld = playRound('rock', computerPlay());
+    updateScore(wld);
 });
 
 paperbtn.addEventListener('click', () => {
-    console.log(playRound('paper', computerPlay()))
+    wld = playRound('paper', computerPlay());
+    updateScore(wld);
 });
 
 scissorsbtn.addEventListener('click', () => {
-    console.log(playRound('scissors', computerPlay()))
+    wld = playRound('scissors', computerPlay());
+    updateScore(wld);
 });
