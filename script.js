@@ -22,8 +22,6 @@ function playRound(playerSelection, computerSelection) {
         result = 'lost';
     }
 
-    console.log(playerSelection, computerSelection, result)
-
     if (result === 'won') {
         console.log(`You won! ${playerSelection.charAt(0).toUpperCase() + 
             playerSelection.slice(1)} beats ${computerSelection}.`);
@@ -65,4 +63,18 @@ function game() {
     }
 }
 
-console.log(game());
+const rockbtn = document.querySelector('#rockbtn');
+const paperbtn = document.querySelector('#paperbtn');
+const scissorsbtn = document.querySelector('#scissorsbtn');
+
+rockbtn.addEventListener('click', () => {
+    console.log(playRound('rock', computerPlay()))
+});
+
+paperbtn.addEventListener('click', () => {
+    console.log(playRound('paper', computerPlay()))
+});
+
+scissorsbtn.addEventListener('click', () => {
+    console.log(playRound('scissors', computerPlay()))
+});
